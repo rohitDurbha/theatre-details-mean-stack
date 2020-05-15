@@ -1,0 +1,87 @@
+<head>
+  <link rel="stylesheet"  href="https://bootswatch.com/4/lux/bootstrap.min.css">
+</head>
+<br>
+<div class="row justify-content-center">
+   <div class="col-md-4 register-theater">
+     <!-- form card register -->
+     <div class="card card-outline-secondary">
+       <div class="card-header">
+         <h3 class="mb-0">Edit Theater</h3>
+       </div>
+       
+       <div class="card-body">
+         <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+           <div class="form-group">
+             <label for="inputName"><h6>Name</h6></label>
+             <input class="form-control" type="text" formControlName="name">
+             <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
+               Name is required.
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputAddress"><h6>Address</h6></label>
+             <input class="form-control" type="text" formControlName="address">
+             <div class="invalid-feedback" *ngIf="submitted && myForm.address.errors?.required">
+               Address is required.
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputCapacity"><h6>Capacity</h6></label>
+             <input class="form-control" type="text" formControlName="capacity">
+             <!-- error -->
+             <div class="invalid-feedback" *ngIf="submitted && myForm.capacity.errors?.required">
+               Enter the Capacity.
+             </div>
+             <div class="invalid-feedback" *ngIf="submitted && myForm.capacity.errors?.pattern">
+               Enter Numbers Only
+             </div>
+           </div>
+
+
+
+           <div class="form-group">
+             <label for="inputType"><h6>Type</h6></label>
+             <select class="custom-select form-control" (change)="updateProfile($event.target.value)"
+               formControlName="type">
+               <option value="">Choose...</option>
+               <option *ngFor="let theaterProfile of TheaterProfile" value="{{theaterProfile}}">{{theaterProfile}}
+               </option>
+             </select>
+             <!-- error -->
+             <div class="invalid-feedback" *ngIf="submitted && myForm.type.errors?.required">
+               Choose type.
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputRevenue"><h6>Revenue</h6></label>
+             <input class="form-control" type="text" formControlName="revenue">
+             <!-- error -->
+             <div class="invalid-feedback" *ngIf="submitted && myForm.revenue.errors?.required">
+               Enter the revenue.
+             </div>
+             <div class="invalid-feedback" *ngIf="submitted && myForm.revenue.errors?.pattern">
+               Enter Numbers Only
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputPrice"><h6>Price Range</h6></label>
+             <input class="form-control" type="text" formControlName="price_range">
+             <div class="invalid-feedback" *ngIf="submitted && myForm.price_range.errors?.required">
+               Price Range is required.
+             </div>
+           </div>
+
+           <div class="form-group">
+             <button class="btn btn-success btn-block" type="submit">Update</button>
+           </div>
+         </form>
+       </div>
+     </div><!-- form  -->
+   </div>
+ </div>

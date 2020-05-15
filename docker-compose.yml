@@ -1,0 +1,22 @@
+version: '3.7' # specify docker-compose version
+ 
+# Define the services/ containers to be run
+services:
+ angular: # name of the first service
+  build: mean-stack-crud-app # specify the directory of the Dockerfile
+  ports:
+  - "4200:80" # specify port mapping
+  image: rohitdurbha/frontend
+ 
+ express: # name of the second service
+  build: backend # specify the directory of the Dockerfile
+  ports:
+  - "3000:3000" #specify ports mapping
+  links:
+  - database # link this service to the database service
+  image: rohitdurbha/backend
+ 
+ database: # name of the third service
+  image: mongo # specify image to build container from
+  ports:
+  - "27017:27017" # specify port forwarding
